@@ -107,10 +107,10 @@ public class MemberCtrl extends Controller
     }
     if (assessmentList.size() !=0){
       if(assessmentList.size() == 1){
-        if(assessmentList.get(0).weight > member.startWeight){
+        if(assessmentList.get(0).weight > member.getStartWeight){
           member.getAssessments().get(0).setTrend("Plus") ;
         }
-        else if (assessmentList.get(0).weight == member.startWeight){
+        else if (assessmentList.get(0).weight == member.getStartWeight){
           member.getAssessments().get(0).setTrend("No Change");
         }
         else {
