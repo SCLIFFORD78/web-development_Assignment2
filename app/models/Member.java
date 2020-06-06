@@ -68,7 +68,7 @@ public class Member extends Model
             }
             // System.out.println("result "+result.size());
             // System.out.println("assessments "+assessments.size());
-            Collections.sort(result, Collections.reverseOrder());
+            Collections.sort(result);
             for (int p = 0; p < result.size();p++){
                 for (int j = 0; j < assessments.size(); j++){
                     // System.out.println(p + "  "+ j);
