@@ -42,13 +42,48 @@ public class Member extends Model
         //setBmi(bmi);
         setStatus(status);
         setIsIdealBodyWeight(isIdealBodyWeight);
-
+        setAssessments(assessments);
     }
+
+
+
 
     //mutator's
 
 
+    public void setAssessments(List<Assessment> assessments) {
+        this.assessments = sortedDates(assessments);
+    }
+
     public List<Assessment> getAssessments() {
+
+        return assessments;
+    }
+    public List<Assessment> sortedDates(List<Assessment> assessments){
+        List<String> result = new ArrayList<String>();
+        List<Assessment> output = new ArrayList<Assessment>();
+        if (!assessments.isEmpty()){
+            for (int i = 0; i<assessments.size();i++){
+                result.add(assessments.get(i).getDate());
+            }
+            // System.out.println("result "+result.size());
+            // System.out.println("assessments "+assessments.size());
+            Collections.sort(result, Collections.reverseOrder());
+            for (int p = 0; p < result.size();p++){
+                for (int j = 0; j < assessments.size(); j++){
+                    // System.out.println(p + "  "+ j);
+                    if (result.get(p).equals(assessments.get(j).getDate())){
+                        output.add(assessments.get(j));
+                        //System.out.println(output.get(j).getDate());
+                    }
+                }
+            }
+            //System.out.println(output.size());
+            //for (int i = 0;i < )
+            //System.out.println(result);
+
+            return output;
+        }
         return assessments;
     }
 
@@ -145,5 +180,6 @@ public class Member extends Model
     {
         return this.password.equals(password);
     }
+
 
 }

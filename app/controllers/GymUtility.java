@@ -29,7 +29,6 @@ public class GymUtility {
             bmi = member.getStartWeight() / member.getHeight() / member.getHeight();
         } else {
             bmi = assessment.getWeight() / member.getHeight() / member.getHeight();
-            System.out.println("bmi "+bmi);
         }
 
         return roundAvoid(bmi,2);

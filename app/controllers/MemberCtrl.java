@@ -9,6 +9,8 @@ import play.Logger;
 import play.mvc.Controller;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 
 public class MemberCtrl extends Controller
@@ -43,7 +45,7 @@ public class MemberCtrl extends Controller
     Member member = Member.findById(id);
     member.getAssessments().add(0,assessment);
     //updates the trend icon status compareing assessment relative to eachother
-
+    member.setAssessments(member.getAssessments());
     member.setBmi(GymUtility.calculateBMI(member,assessment));
     member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessment)));
     member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessment));
@@ -72,8 +74,10 @@ public class MemberCtrl extends Controller
   {
     Member member = Accounts.getLoggedInMember();
     Assessment assessment = Assessment.findById(assessmentId);
+    System.out.println(assessment.id);
     member.getAssessments().remove(assessment);
-    member.save();
+    member.setAssessments(member.getAssessments());
+   // member.save();
     displayProgressByWeight(member);
     member.save();
     Logger.info ("Removing Assessment" + assessmentId);
@@ -89,6 +93,8 @@ public class MemberCtrl extends Controller
 
   private void displayProgressByWeight(Member member){
     List<Assessment> assessmentList = member.getAssessments();
+    List<Assessment>test = member.sortedDates(assessmentList);
+   // System.out.println(test);
     String trend = "";
     if (assessmentList.size()==0){
       member.setBmi(GymUtility.calculateBMI(member,null));
@@ -126,7 +132,7 @@ public class MemberCtrl extends Controller
         member.setBmi(GymUtility.calculateBMI(member,assessmentList.get(0)));
         member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessmentList.get(0))));
         member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessmentList.get(0)));
-        member.save();
+        //member.save();
       }
 
     }
