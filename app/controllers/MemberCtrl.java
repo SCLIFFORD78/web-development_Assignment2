@@ -41,7 +41,7 @@ public class MemberCtrl extends Controller
   {
     Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips, comments, dateToday());
     Member member = Member.findById(id);
-    member.assessments.add(0,assessment);
+    member.getAssessments().add(0,assessment);
     //updates the trend icon status compareing assessment relative to eachother
     displayProgressByWeight(member);
     member.setBmi(GymUtility.calculateBMI(member,assessment));
@@ -71,7 +71,7 @@ public class MemberCtrl extends Controller
   {
     Member member = Accounts.getLoggedInMember();
     Assessment assessment = Assessment.findById(assessmentId);
-    member.assessments.remove(assessment);
+    member.getAssessments().remove(assessment);
     displayProgressByWeight(member);
     member.save();
     Logger.info ("Removing Assessment" + assessmentId);
@@ -81,42 +81,45 @@ public class MemberCtrl extends Controller
   }
 
   /**
-   * @discription Updates the trend arrow indicator on assessments for a member
+   * @discription Updates the trend arrow indicator on getAssessments for a member
    * @param member
    */
 
   private void displayProgressByWeight(Member member){
-    List<Assessment> assessmentList = member.assessments;
+    List<Assessment> assessmentList = member.getAssessments();
     String trend = "";
     System.out.println(assessmentList.size());
     if (assessmentList.size() !=0){
       if(assessmentList.size() == 1){
         if(assessmentList.get(0).weight > member.startWeight){
-          member.assessments.get(0).setTrend("Plus") ;
+          member.getAssessments().get(0).setTrend("Plus") ;
         }
         else if (assessmentList.get(0).weight == member.startWeight){
-          member.assessments.get(0).setTrend("No Change");
+          member.getAssessments().get(0).setTrend("No Change");
         }
         else {
-          member.assessments.get(0).setTrend("Down");
+          member.getAssessments().get(0).setTrend("Down");
         }
       }else{
         for(int i = 0; i < assessmentList.size()-1 ; i++){
           if (assessmentList.get(i).getWeight() > assessmentList.get(i+1).getWeight()) {
-            member.assessments.get(i).setTrend("Plus");trend = "Plus";
+            member.getAssessments().get(i).setTrend("Plus");trend = "Plus";
           }
           else if (assessmentList.get(i).weight == assessmentList.get(i+1).weight){
-            member.assessments.get(i).setTrend("No Change");trend = "No Change";
+            member.getAssessments().get(i).setTrend("No Change");trend = "No Change";
           }
           else {
-            member.assessments.get(i).setTrend("Down");trend = "Down";
+            member.getAssessments().get(i).setTrend("Down");trend = "Down";
           }
         }
       }
+      member.setBmi(GymUtility.calculateBMI(member,assessmentList.get(0)));
+      member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessmentList.get(0))));
+      member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessmentList.get(0)));
     }
-    member.setBmi(GymUtility.calculateBMI(member,assessmentList.get(0)));
-    member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessmentList.get(0))));
-    member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessmentList.get(0)));
+    member.setBmi(GymUtility.calculateBMI(member,null));
+    member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, null)));
+    member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, null));
 
   }
 

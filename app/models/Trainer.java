@@ -28,7 +28,8 @@ public class Trainer extends Model
 
 
 
-    public Trainer(String name, String gender, double height, double startWeight, String email, String password, String address)
+    public Trainer(String name, String gender, double height, double startWeight, String email,
+                   String password, String address)
     {
         setName(name);
         setGender(gender);
@@ -44,6 +45,11 @@ public class Trainer extends Model
     }
 
     //mutator's
+
+
+    public List<Member> getMemberList() {
+        return memberList;
+    }
 
     public void setName(String name) {
         this.name = name;

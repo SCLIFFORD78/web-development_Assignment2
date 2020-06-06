@@ -42,9 +42,9 @@ public class DashboardTrainer extends Controller
             if(memberList.get(i).id == memberId){
                 member = memberList.get(i);
                 Assessment assessment = null;
-                for (int j = 0; j < member.assessments.size();j++){
-                    if(member.assessments.get(j).id == assessmentId){
-                        assessment = member.assessments.get(j);
+                for (int j = 0; j < member.getAssessments().size();j++){
+                    if(member.getAssessments().get(j).id == assessmentId){
+                        assessment = member.getAssessments().get(j);
                         assessment.setComments(comment);
 
                     }

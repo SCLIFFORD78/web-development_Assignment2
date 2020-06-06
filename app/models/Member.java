@@ -47,6 +47,11 @@ public class Member extends Model
 
     //mutator's
 
+
+    public List<Assessment> getAssessments() {
+        return assessments;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
