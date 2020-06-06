@@ -54,7 +54,7 @@ public class MemberCtrl extends Controller
 
     displayProgressByWeight(member);
     member.save();
-    redirect ("/dashboard");
+    render ("dashboard.html", member);
 
   }
 
