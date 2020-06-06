@@ -44,7 +44,7 @@ public class MemberCtrl extends Controller
     Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips, comments, dateToday());
     Member member = Member.findById(id);
     int pos = member.getAssessments().size();
-    member.getAssessments().add(pos,assessment);
+    member.getAssessments().add(0,assessment);
     member.save();
     //updates the trend icon status compareing assessment relative to eachother
     member.setAssessments(member.getAssessments());
