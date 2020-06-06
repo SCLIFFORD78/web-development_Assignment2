@@ -69,8 +69,8 @@ public class Member extends Model
             // System.out.println("result "+result.size());
             // System.out.println("assessments "+assessments.size());
             Collections.sort(result, Collections.reverseOrder());
-            for (int p = 0; p < result.size();p++){
-                for (int j = 0; j < assessments.size(); j++){
+            for (int p = 0; p < assessments.size();p++){
+                for (int j = 0; j < result.size(); j++){
                     // System.out.println(p + "  "+ j);
                     if (result.get(p).equals(assessments.get(j).getDate())){
                         output.add(assessments.get(j));
