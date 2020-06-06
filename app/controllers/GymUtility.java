@@ -29,6 +29,7 @@ public class GymUtility {
             bmi = member.getStartWeight() / member.getHeight() / member.getHeight();
         } else {
             bmi = assessment.getWeight() / member.getHeight() / member.getHeight();
+            System.out.println("bmi "+bmi);
         }
 
         return roundAvoid(bmi,2);
@@ -91,6 +92,7 @@ public class GymUtility {
                 if (assessment.getWeight() < lowerBracket || assessment.getWeight() > upperBracket) result = false;
             }
         }
+        System.out.println("is ideal weight "+result);
         return result;
     }
 

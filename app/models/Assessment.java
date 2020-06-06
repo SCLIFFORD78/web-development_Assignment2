@@ -17,8 +17,7 @@ public class Assessment extends Model
   public String date;
   public String trend;
 
-  public Assessment(double weight, double chest, double thigh, double upperArm, double waist, double hips,
-                    String comments, String date)
+  public Assessment(double weight, double chest, double thigh, double upperArm, double waist, double hips, String comments, String date)
   {
     setWeight(weight);
     setChest(chest);

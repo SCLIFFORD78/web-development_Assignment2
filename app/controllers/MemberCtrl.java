@@ -43,10 +43,11 @@ public class MemberCtrl extends Controller
     Member member = Member.findById(id);
     member.getAssessments().add(0,assessment);
     //updates the trend icon status compareing assessment relative to eachother
-    displayProgressByWeight(member);
+
     member.setBmi(GymUtility.calculateBMI(member,assessment));
     member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessment)));
     member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessment));
+    displayProgressByWeight(member);
     member.save();
     redirect ("/dashboard");
 
@@ -74,9 +75,10 @@ public class MemberCtrl extends Controller
     member.getAssessments().remove(assessment);
     member.save();
     displayProgressByWeight(member);
+    member.save();
     Logger.info ("Removing Assessment" + assessmentId);
 
-    redirect ("/dashboard");
+    render ("dashboard.html", member);
 
   }
 
@@ -88,7 +90,12 @@ public class MemberCtrl extends Controller
   private void displayProgressByWeight(Member member){
     List<Assessment> assessmentList = member.getAssessments();
     String trend = "";
-    System.out.println(assessmentList.size());
+    if (assessmentList.size()==0){
+      member.setBmi(GymUtility.calculateBMI(member,null));
+      member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, null)));
+      member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, null));
+      member.save();
+    }
     if (assessmentList.size() !=0){
       if(assessmentList.size() == 1){
         if(assessmentList.get(0).weight > member.startWeight){
@@ -100,6 +107,10 @@ public class MemberCtrl extends Controller
         else {
           member.getAssessments().get(0).setTrend("Down");
         }
+        member.setBmi(GymUtility.calculateBMI(member,assessmentList.get(0)));
+        member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessmentList.get(0))));
+        member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessmentList.get(0)));
+
       }else{
         for(int i = 0; i < assessmentList.size()-1 ; i++){
           if (assessmentList.get(i).getWeight() > assessmentList.get(i+1).getWeight()) {
@@ -112,14 +123,13 @@ public class MemberCtrl extends Controller
             member.getAssessments().get(i).setTrend("Down");trend = "Down";
           }
         }
+        member.setBmi(GymUtility.calculateBMI(member,assessmentList.get(0)));
+        member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessmentList.get(0))));
+        member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessmentList.get(0)));
+        member.save();
       }
-      member.setBmi(GymUtility.calculateBMI(member,assessmentList.get(0)));
-      member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessmentList.get(0))));
-      member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessmentList.get(0)));
+
     }
-    member.setBmi(GymUtility.calculateBMI(member,null));
-    member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, null)));
-    member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, null));
 
   }
 
