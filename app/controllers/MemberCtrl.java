@@ -43,15 +43,8 @@ public class MemberCtrl extends Controller
   {
     Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips, comments, dateToday());
     Member member = Member.findById(id);
-    int pos = member.getAssessments().size();
     member.setAssessments(member.getAssessments());
     member.getAssessments().add(0,assessment);
-    //updates the trend icon status compareing assessment relative to eachother
-
-    //member.setBmi(GymUtility.calculateBMI(member,assessment));
-    //member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessment)));
-   // member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessment));
-
     displayProgressByWeight(member);
     member.save();
     render ("dashboard.html", member);
@@ -80,7 +73,6 @@ public class MemberCtrl extends Controller
     System.out.println(assessment.id);
     member.getAssessments().remove(assessment);
     member.setAssessments(member.getAssessments());
-   // member.save();
     displayProgressByWeight(member);
     member.save();
     Logger.info ("Removing Assessment" + assessmentId);
@@ -96,14 +88,12 @@ public class MemberCtrl extends Controller
 
   private void displayProgressByWeight(Member member){
     List<Assessment> assessmentList = member.getAssessments();
-    List<Assessment>test = member.sortedDates(assessmentList);
-   // System.out.println(test);
     String trend = "";
     if (assessmentList.size()==0){
       member.setBmi(GymUtility.calculateBMI(member,null));
       member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, null)));
       member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, null));
-      member.save();
+     // member.save();
     }
     if (assessmentList.size() !=0){
       if(assessmentList.size() == 1){
@@ -135,7 +125,6 @@ public class MemberCtrl extends Controller
         member.setBmi(GymUtility.calculateBMI(member,assessmentList.get(0)));
         member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessmentList.get(0))));
         member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessmentList.get(0)));
-        //member.save();
       }
 
     }
