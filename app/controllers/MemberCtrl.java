@@ -48,9 +48,9 @@ public class MemberCtrl extends Controller
     member.save();
     //updates the trend icon status compareing assessment relative to eachother
     member.setAssessments(member.getAssessments());
-    //member.setBmi(GymUtility.calculateBMI(member,assessment));
-    //member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessment)));
-   // member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessment));
+    member.setBmi(GymUtility.calculateBMI(member,assessment));
+    member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessment)));
+    member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessment));
 
     displayProgressByWeight(member);
 
