@@ -52,7 +52,7 @@ public class MemberCtrl extends Controller
     //member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessment)));
    // member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessment));
 
-    displayProgressByWeight(member);
+    //displayProgressByWeight(member);
     member.save();
     render ("dashboard.html", member);
 
