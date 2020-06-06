@@ -1,0 +1,45 @@
+#{extends 'main.html' /}
+#{set title:'Dashboard' /}
+
+#{menu id:"dashboard"/}
+
+
+<section class="ui segment">
+  <div class="ui raised segment">
+    <div class="ui four column stackable center aligned grid">
+      <div class="middle aligned row">
+        <div class="column">
+          <h4 class="ui icon header">
+            <i class="user icon"></i>
+            <div class="content">${member.name}</div>
+          </h4>
+        </div>
+        <div class="column">
+          <h4 class="ui icon header">
+            {% if (member.isIdealBodyWeight == true) %}
+            <i class="green tachometer alternate icon"></i>
+            {% endif %}
+            {% if (member.isIdealBodyWeight == false) %}
+            <i class="red tachometer alternate icon"></i>
+            {% endif %}
+            <div class="content">Ideal Weight Indicator</div>
+          </h4>
+        </div>
+        <div class="column">
+          <h4 class="ui icon header">
+            <i class="heartbeat icon"> ${member.bmi}</i>
+            <div class="content">BMI</div>
+          </h4>
+        </div>
+        <div class="column" data-position="bottom center" data-tooltip="Current BMI Category">
+          <h4 class="ui icon header">
+            <i class="user md icon"></i>
+            <div class="content">${member.status}</div>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  #{addassessment member:member /}
+  #{listassessments member:member /}

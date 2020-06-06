@@ -1,0 +1,72 @@
+#{list items:_member.assessments, as:'assessment'}
+<table class="ui fixed table ">
+
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Weight</th>
+        <th>Chest</th>
+        <th>Thigh</th>
+        <th>Upper Arm</th>
+        <th>Waist</th>
+        <th>Hips</th>
+        <th>Trend</th>
+        <th>Comments</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td>
+            ${assessment.date}
+        </td>
+        <td>
+            ${assessment.weight}
+        </td>
+        <td>
+            ${assessment.chest}
+        </td>
+        <td>
+            ${assessment.thigh}
+        </td>
+        <td>
+            ${assessment.upperArm}
+        </td>
+        <td>
+            ${assessment.waist}
+        </td>
+        <td>
+            ${assessment.hips}
+        </td>
+        <td>
+            {% if (assessment.trend == "Down") %}
+            <i class="big green arrow down icon"></i>
+            {% if (assessment.trend == "Plus") %}
+            <i class="big red arrow up icon"></i>
+            {% endif %}
+            {% if (assessment.trend == "No Change") %}
+            <i class="big blue arrow left icon"></i>
+            {% endif %}
+        </td>
+        <td>
+            ${assessment.comments}
+        </td>
+    </tr>
+
+
+    </tbody>
+
+
+</table>
+<form action="/members/${_member.id}/${assessment.id}/listassessmentsTrainerSelect" class="ui form" method="POST">
+
+
+    <div class="field">
+        <label>Comment</label>
+        <input name="comment" placeholder="Comment" type="text">
+    </div>
+
+
+    <button class="ui blue submit button">Update Comment</button>
+</form>
+#{/list}

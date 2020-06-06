@@ -1,0 +1,35 @@
+#{extends 'main.html' /}
+#{set title:'DashboardTrainer' /}
+
+#{menuTrainer id:"dashboardTrainer"/}
+
+#{list items:memberList, as:'member'}
+<section class="ui segment">
+  <div class="ui relaxed divided list">
+    <div class="item">
+      <i class="big user icon"></i>
+      <div class="content">
+        <a class="memberNameLink" data-position="top left" data-tooltip="View Assessments"
+           href="/dashboardTrainer/${member.id}/getMember"> ${member.name}
+        </a>
+        <a class="ui right floated " data-position="top right" data-tooltip="Delete Member"
+           href="/member/${member.id}/deleteMember">
+
+          <i class="big red trash alternate icon"></i>
+
+        </a>
+        <div class="description">${member.assessments.size()} assessments</div>
+      </div>
+    </div>
+  </div>
+</section>
+#{/list}
+<section class="ui center aligned segment">
+  <div>
+    {% if (member == null) %}
+    <h2>There are no current registered members.</h2>
+    {% endif %}
+  </div>
+</section>
+
+

@@ -1,0 +1,86 @@
+Assessment(m1):
+  weight: 90.0
+  chest: 44.0
+  thigh: 18
+  upperArm: 17
+  waist: 33
+  hips: 36
+  comments: Test 1
+  date: 06/06/20 06:54:54
+  trend: Down
+Assessment(m2):
+  weight: 89.0
+  chest: 98.1
+  thigh: 52.54
+  upperArm: 28.5
+  waist: 298.2
+  hips: 318
+  comments: Test 2
+  date: 28/03/20 01:13:17
+  trend: Plus
+Assessment(m3):
+  weight: 87.5
+  chest: 98.5
+  thigh: 51.78
+  upperArm: 29.7
+  waist: 296.2
+  hips: 316.55
+  comments: Test 3
+  date: 28/01/20 01:13:17
+  trend: Down
+Assessment(m4):
+  weight: 92.0
+  chest: 44.0
+  thigh: 17.6
+  upperArm: 16.8
+  waist: 33
+  hips: 35.9
+  comments: Test 2
+  date: 06/06/20 06:58:37
+  trend: Plus
+
+Member(p1):
+  name: John Smith
+  gender: male
+  height: 1.8
+  startWeight: 91.0
+  email: john@gmail.com
+  password: 1
+  address: Killarney
+  bmi: 27.47
+  status: Overwight
+  isIdealBodyWeight: false
+  assessments:
+    - m2
+    - m3
+
+Member(p2):
+  name: Mary Jones
+  gender: female
+  height: 1.8
+  startWeight: 91.0
+  email: mjones@gmail.com
+  password: 1
+  address: Killarney
+  bmi: 28.4
+  status: Overwight
+  isIdealBodyWeight: false
+  assessments:
+    - m1
+    - m4
+
+
+Trainer(t1):
+  name: a
+  gender: male
+  height: 1.8
+  startWeight: 91.0
+  email: a
+  password: a
+  address: Killarney
+  bmi: 28.09
+  status: Overwight
+  isIdealBodyWeight: false
+  assessments:
+    - m1
+
