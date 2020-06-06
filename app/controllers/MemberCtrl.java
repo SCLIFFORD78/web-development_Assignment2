@@ -44,16 +44,16 @@ public class MemberCtrl extends Controller
     Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips, comments, dateToday());
     Member member = Member.findById(id);
     int pos = member.getAssessments().size();
-    //member.setAssessments(member.getAssessments());
     member.getAssessments().add(pos,assessment);
+    member.save();
     //updates the trend icon status compareing assessment relative to eachother
-
+    member.setAssessments(member.getAssessments());
     //member.setBmi(GymUtility.calculateBMI(member,assessment));
     //member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, assessment)));
    // member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, assessment));
 
     displayProgressByWeight(member);
-    member.save();
+
     redirect ("/dashboard");
 
   }
