@@ -45,7 +45,7 @@ public class MemberCtrl extends Controller
     Member member = Member.findById(id);
     int pos = member.getAssessments().size();
     member.setAssessments(member.getAssessments());
-    member.getAssessments().add(0,assessment);
+    member.getAssessments().add(pos,assessment);
     //updates the trend icon status compareing assessment relative to eachother
 
     member.setBmi(GymUtility.calculateBMI(member,assessment));
