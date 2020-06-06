@@ -42,9 +42,9 @@ public class MemberCtrl extends Controller
                                     double upperArm, double waist, double hips, String comments, String date)
   {
     Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips, comments, dateToday());
-    //Member member = Member.findById(id);
+    Member member = Member.findById(id);
     int pos = member.getAssessments().size();
-    member.setAssessments(member.getAssessments());
+    //member.setAssessments(member.getAssessments());
     member.getAssessments().add(0,assessment);
     //updates the trend icon status compareing assessment relative to eachother
 
