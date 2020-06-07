@@ -71,6 +71,7 @@ public class MemberCtrl extends Controller
     Member member = Accounts.getLoggedInMember();
     Assessment assessment = Assessment.findById(assessmentId);
     member.getAssessments().remove(assessment);
+    member.setAssessments(member.getAssessments());
     displayProgressByWeight(member);
     member.save();
     Logger.info ("Removing Assessment" + assessmentId);
