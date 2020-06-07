@@ -44,11 +44,11 @@ public class MemberCtrl extends Controller
   {
     Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips, comments, dateToday());
     Member member = Member.findById(id);
-    //member.setAssessments(member.getAssessments());
     member.getAssessments().add(0,assessment);
     displayProgressByWeight(member);
     member.save();
     render ("dashboard.html", member);
+    member.setAssessments(member.getAssessments());
   }
 
   private String dateToday(){
@@ -71,7 +71,7 @@ public class MemberCtrl extends Controller
     Member member = Accounts.getLoggedInMember();
     Assessment assessment = Assessment.findById(assessmentId);
     member.getAssessments().remove(assessment);
-    member.setAssessments(member.getAssessments());
+    //member.setAssessments(member.getAssessments());
     displayProgressByWeight(member);
     member.save();
     Logger.info ("Removing Assessment" + assessmentId);

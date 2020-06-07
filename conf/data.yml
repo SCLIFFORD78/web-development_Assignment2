@@ -6,7 +6,7 @@ Assessment(m1):
   waist: 33
   hips: 36
   comments: Test 1
-  date: 06/06/20 06:54:54
+  date: 07/06/20 09:42:38
   trend: Down
 Assessment(m2):
   weight: 89.0
@@ -16,7 +16,7 @@ Assessment(m2):
   waist: 298.2
   hips: 318
   comments: Test 2
-  date: 28/03/20 01:13:17
+  date: 07/06/20 09:38:07
   trend: Plus
 Assessment(m3):
   weight: 87.5
@@ -26,7 +26,7 @@ Assessment(m3):
   waist: 296.2
   hips: 316.55
   comments: Test 3
-  date: 28/01/20 01:13:17
+  date: 07/06/20 09:38:02
   trend: Down
 Assessment(m4):
   weight: 92.0
