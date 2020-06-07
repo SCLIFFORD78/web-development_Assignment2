@@ -15,6 +15,7 @@ public class Dashboard extends Controller
     {
         Logger.info("Rendering Dashboard");
         Member member = Accounts.getLoggedInMember();
+        member.setAssessments(member.getAssessments());
         render("dashboard.html", member);
     }
 }
