@@ -47,8 +47,8 @@ public class MemberCtrl extends Controller
     member.getAssessments().add(0,assessment);
     displayProgressByWeight(member);
     member.save();
-    render ("dashboard.html", member);
     member.setAssessments(member.getAssessments());
+    render ("dashboard.html", member);
   }
 
   private String dateToday(){
