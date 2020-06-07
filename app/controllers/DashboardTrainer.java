@@ -31,7 +31,7 @@ public class DashboardTrainer extends Controller
         }
         Logger.info("Rendering Trainer Dashboard");
         Trainer trainer = Accounts.getLoggedInTrainer();
-
+        member.setAssessments(member.getAssessments());
         render("dashboardTrainerMember.html",  member);
     }
 
