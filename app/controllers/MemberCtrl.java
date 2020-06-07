@@ -35,6 +35,7 @@ public class MemberCtrl extends Controller
     member.setBmi(GymUtility.calculateBMI(member,null));
     member.setStatus(GymUtility.determineBMICategory(member.getBmi()));
     Logger.info ("Updating member details = " + member.email);
+
     render("dashboard.html", member);
   }
 
@@ -43,12 +44,11 @@ public class MemberCtrl extends Controller
   {
     Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips, comments, dateToday());
     Member member = Member.findById(id);
-    member.setAssessments(member.getAssessments());
+    //member.setAssessments(member.getAssessments());
     member.getAssessments().add(0,assessment);
     displayProgressByWeight(member);
     member.save();
     render ("dashboard.html", member);
-
   }
 
   private String dateToday(){
@@ -70,9 +70,7 @@ public class MemberCtrl extends Controller
   {
     Member member = Accounts.getLoggedInMember();
     Assessment assessment = Assessment.findById(assessmentId);
-    System.out.println(assessment.id);
     member.getAssessments().remove(assessment);
-    member.setAssessments(member.getAssessments());
     displayProgressByWeight(member);
     member.save();
     Logger.info ("Removing Assessment" + assessmentId);
@@ -93,7 +91,7 @@ public class MemberCtrl extends Controller
       member.setBmi(GymUtility.calculateBMI(member,null));
       member.setStatus(GymUtility.determineBMICategory(GymUtility.calculateBMI(member, null)));
       member.setIsIdealBodyWeight(GymUtility.isIdealBodyWeight(member, null));
-     // member.save();
+
     }
     if (assessmentList.size() !=0){
       if(assessmentList.size() == 1){
@@ -136,6 +134,8 @@ public class MemberCtrl extends Controller
     double scale = Math.pow(10, places);
     return Math.round(value * scale) / scale;
   }
+
+
 
 
   }

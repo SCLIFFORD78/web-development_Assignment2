@@ -1,8 +1,8 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.*;
 
 
 import javax.persistence.CascadeType;
@@ -50,15 +50,13 @@ public class Member extends Model
 
     //mutator's
 
-
+    //sorts assessments in reverse order creates  a List of assessment dates then sorts them
+    //and compares the sorted result to the assessment array and sorts in reverse order.
     public void setAssessments(List<Assessment> assessments) {
         this.assessments = sortedDates(assessments);
     }
 
-    public List<Assessment> getAssessments() {
 
-        return assessments;
-    }
     public List<Assessment> sortedDates(List<Assessment> assessments){
         List<String> result = new ArrayList<String>();
         List<Assessment> output = new ArrayList<Assessment>();
@@ -66,21 +64,15 @@ public class Member extends Model
             for (int i = 0; i<assessments.size();i++){
                 result.add(assessments.get(i).getDate());
             }
-            // System.out.println("result "+result.size());
-            // System.out.println("assessments "+assessments.size());
             Collections.sort(result, Collections.reverseOrder());
             for (int p = 0; p < assessments.size();p++){
                 for (int j = 0; j < result.size(); j++){
-                    // System.out.println(p + "  "+ j);
                     if (result.get(p).equals(assessments.get(j).getDate())){
                         output.add(assessments.get(j));
-                        //System.out.println(output.get(j).getDate());
                     }
                 }
             }
-            //System.out.println(output.size());
-            //for (int i = 0;i < )
-            //System.out.println(result);
+
 
             return output;
         }
@@ -168,6 +160,11 @@ public class Member extends Model
 
     public boolean isIdealBodyWeight() {
         return isIdealBodyWeight;
+    }
+
+    public List<Assessment> getAssessments() {
+
+        return assessments;
     }
 
 

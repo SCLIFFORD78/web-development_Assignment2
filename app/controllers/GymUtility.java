@@ -91,7 +91,6 @@ public class GymUtility {
                 if (assessment.getWeight() < lowerBracket || assessment.getWeight() > upperBracket) result = false;
             }
         }
-        System.out.println("is ideal weight "+result);
         return result;
     }
 

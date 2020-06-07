@@ -33,6 +33,7 @@ public class Accounts extends Controller
         member.save();
         session.clear();
         session.put("logged_in_Memberid", member.id);
+
         redirect ("/dashboard");
       }else{
         Logger.info("Registering new trainer " + email);
@@ -61,6 +62,7 @@ public class Accounts extends Controller
       Logger.info("Authentication successful");
       Logger.info("Member "+ member.name);
       session.put("logged_in_Memberid", member.id);
+
       redirect ("/dashboard");
     }
     else if ((trainer != null) && (trainer.checkPassword(password) == true)){
