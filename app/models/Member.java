@@ -42,7 +42,7 @@ public class Member extends Model
         //setBmi(bmi);
         setStatus(status);
         setIsIdealBodyWeight(isIdealBodyWeight);
-        setAssessments(assessments);
+       // setAssessments(assessments);
     }
 
 
