@@ -45,9 +45,9 @@ public class MemberCtrl extends Controller
     Assessment assessment = new Assessment(weight, chest, thigh, upperArm, waist, hips, comments, dateToday());
     Member member = Member.findById(id);
     member.getAssessments().add(0,assessment);
-    displayProgressByWeight(member);
     member.save();
     member.setAssessments(member.getAssessments());
+    displayProgressByWeight(member);
     render ("dashboard.html", member);
   }
 
